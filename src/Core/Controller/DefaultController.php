@@ -24,7 +24,11 @@ class DefaultController extends CoreController
     public function uploadAction(string $options, string $imageSrc = null): Response
     {
 	if (strstr($imageSrc,'url=')){
-
+		$imageSrc=explode('url=',$imageSrc);
+		$imageSrc=array_pop($imageSrc);	
+		$imageSrc=urldecode($imageSrc);
+		$imageSrc=explode('&cfs',$imageSrc);
+		$imageSrc=array_shift($imageSrc);	
 	}
 
         $image = $this->imageHandler()->processImage($options, $imageSrc);
