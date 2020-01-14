@@ -23,6 +23,10 @@ class DefaultController extends CoreController
      */
     public function uploadAction(string $options, string $imageSrc = null): Response
     {
+	if (strstr($imageSrc,'url=')){
+
+	}
+
         $image = $this->imageHandler()->processImage($options, $imageSrc);
 
         $this->response->generateImageResponse($image);
